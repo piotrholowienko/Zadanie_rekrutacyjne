@@ -29,13 +29,13 @@ fetch("https://jsonplaceholder.typicode.com/albums/")
       }
     });
 
-    function changeDataIfClicked(element) {
+    let changeDataIfClicked = (element) => {
       element.innerHTML == element.id
         ? (element.innerHTML = element.title)
         : (element.innerHTML = element.id);
-    }
+    };
 
-    function changeColorIfChecked(element) {
+    let changeColorIfChecked = (element) => {
       element.classList.toggle("active");
-    }
+    };
   });
