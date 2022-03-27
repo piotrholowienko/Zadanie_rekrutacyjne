@@ -1,5 +1,5 @@
 fetch("https://jsonplaceholder.typicode.com/albums/")
-  .then(function (response) {
+  .then((response) => {
     return response.json();
   })
 
@@ -30,11 +30,9 @@ fetch("https://jsonplaceholder.typicode.com/albums/")
     });
 
     function changeDataIfClicked(element) {
-      if (element.innerHTML == element.id) {
-        element.innerHTML = element.title;
-      } else {
-        element.innerHTML = element.id;
-      }
+      element.innerHTML == element.id
+        ? (element.innerHTML = element.title)
+        : (element.innerHTML = element.id);
     }
 
     function changeColorIfChecked(element) {
