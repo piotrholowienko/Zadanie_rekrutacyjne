@@ -51,6 +51,10 @@ ul{
     list-style-type: none;
 }
 
+ul.highlight li:nth-child(even) {
+    background-color: #00ff00;
+}
+
 ul li {
 text-align: center;
   background-color: blue;
@@ -58,8 +62,3 @@ text-align: center;
   padding: 10px;
   cursor: pointer;
 }
-
-ul li.active {
-    background-color: #00ff00;
-}
-

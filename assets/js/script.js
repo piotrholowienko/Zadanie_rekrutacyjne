@@ -1,41 +1,51 @@
+const result = document.getElementById("result");
+
 fetch("https://jsonplaceholder.typicode.com/albums/")
-  .then((response) => {
-    return response.json();
-  })
+  .then((response) => response.json())
 
   .then((response) => {
-    const result = document.getElementById("result");
+    // for (let i = 0; i < 10; i++) {
+    //   const li = document.createElement("li");
+    //   li.appendChild(document.createTextNode(response[i].id));
+    //   li.setAttribute("id", response[i].id);
+    //   li.setAttribute("title", response[i].title);
+    //   result.appendChild(li);
+    // }
 
-    for (let i = 0; i < 10; i++) {
+    response.slice(0, 10).map((item) => {
+      let { id, title } = item;
       const li = document.createElement("li");
-      li.appendChild(document.createTextNode(response[i].id));
-      li.setAttribute("id", response[i].id);
-      li.setAttribute("title", response[i].title);
+      li.appendChild(document.createTextNode(id));
+      li.setAttribute("id", id);
+      li.setAttribute("title", title);
+      li.addEventListener("click", () => changeDataIfClicked(li));
       result.appendChild(li);
-    }
-
-    const tagLi = document.querySelectorAll("li");
-    const checkbox = document.getElementById("checkbox");
-
-    tagLi.forEach((element) => {
-      element.addEventListener("click", () => changeDataIfClicked(element));
     });
 
-    checkbox.addEventListener("change", () => {
-      for (let i = 0; i < tagLi.length; i++) {
-        if (i % 2 != 0) {
-          changeColorIfChecked(tagLi[i]);
-        }
-      }
-    });
+    // const tagLi = document.querySelectorAll("li");
+
+    // tagLi.forEach((element) => {
+    //   element.addEventListener("click", () => changeDataIfClicked(element));
+    // });
 
     let changeDataIfClicked = (element) => {
       element.innerHTML == element.id
         ? (element.innerHTML = element.title)
         : (element.innerHTML = element.id);
     };
-
-    let changeColorIfChecked = (element) => {
-      element.classList.toggle("active");
-    };
   });
+const checkbox = document.getElementById("checkbox");
+
+checkbox.addEventListener("change", () => {
+  result.classList.toggle("highlight");
+  // const tagLi = document.querySelectorAll("li");
+  // for (let i = 0; i < tagLi.length; i++) {
+  //   if (i % 2 != 0) {
+  //     changeColorIfChecked(tagLi[i]);
+  //   }
+  // }
+});
+
+let changeColorIfChecked = (element) => {
+  element.classList.toggle("active");
+};
